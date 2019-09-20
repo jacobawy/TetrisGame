@@ -51,7 +51,27 @@ def main():
 def draw_game_area(screen):
     "绘制游戏区域"
     # 绘制一条线
-    pygame.draw.line(screen, (0, 0, 0), (100, 100), (200, 200))
+    # pygame.draw.line(screen, (0, 0, 0), (100, 100), (200, 200))
+    # 顶部边界
+    pygame.draw.line(screen, edge_color, (game_area_left, game_area_top),
+                     (game_area_left + game_area_width, game_area_top))
+    # 底部边界
+    pygame.draw.line(screen, edge_color, (game_area_left, screen_height), (game_area_left+game_area_width, screen_height))
+    # 左侧边界
+    pygame.draw.line(screen, edge_color, (game_area_left, game_area_top), (game_area_left, screen_height))
+    # 右侧边界
+    pygame.draw.line(screen, edge_color, (game_area_left + game_area_width, game_area_top), (game_area_left+game_area_width, screen_height))
+
+    n = 1
+    while n <= 19:
+        # 竖线
+        if game_area_left+n*cell_width < game_area_left+game_area_width:
+            pygame.draw.line(screen, edge_color, (game_area_left+n*cell_width, game_area_top),
+                            (game_area_left+n*cell_width, screen_height))
+        # 横线
+        pygame.draw.line(screen, edge_color, (game_area_left, game_area_top+n*cell_width),
+                         (game_area_left+game_area_width, game_area_top+n*cell_width))
+        n += 1
 
 
 if __name__ == '__main__':
